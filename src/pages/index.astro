@@ -1,0 +1,132 @@
+---
+import Intro from "../components/Intro";
+import Info from "../components/Info";
+import Join from "../components/Join";
+import Rising from "../components/Rising";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/700.css";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Auto Farm Store</title>
+  </head>
+  <body class="w-screen h-screen relative">
+    <a href=""
+      ><img
+        src="/logo.png"
+        class="fixed top-10 -left-10 md:top-10 md:left-10 scale-[0.45] md:scale-75"
+      />
+    </a>
+    <div
+      class="scroll-smooth flex flex-row overflow-x-scroll w-screen hidescrollbar snap-x snap-mandatory"
+    >
+      <div
+        onclick="(()=>{      const ele=document.getElementsByClassName('hidescrollbar')[0];ele.scrollLeft+=screen.width;})()"
+        class="absolute z-30 cursor-pointer bottom-2 flex items-center justify-center flex-col left-0 right-0 ml-auto mr-auto"
+      >
+        <h2 class="text-white -mb-4">Our Story</h2>
+        <img src="/downicon.png" />
+      </div>
+      <div class="mt-28 md:mt-32 flex flex-row z-20">
+        <div
+          class="w-screen flex items-start md:items-center justify-center snap-start"
+        >
+          <Intro client:visible />
+        </div>
+        <div
+          class="w-screen flex items-start md:items-center justify-center snap-start"
+        >
+          <Info client:visible />
+        </div>
+        <div
+          class="w-screen flex items-start md:items-center justify-center snap-start"
+        >
+          <Join client:visible />
+        </div>
+        <div
+          class="w-screen flex items-start md:items-center justify-center snap-start"
+        >
+          <Rising client:visible />
+        </div>
+      </div>
+    </div>
+    <script>
+      function scrollLeft() {
+        alert("HerE");
+        const ele = document.getElementsByClassName("hidescrollbar")[0];
+        ele.scrollLeft += screen.width;
+      }
+      const target = document.getElementsByClassName("hidescrollbar")[0];
+      target.addEventListener("wheel", (event) => {
+        const toLeft = event.deltaY < 0 && target.scrollLeft > 0;
+        const toRight =
+          event.deltaY > 0 &&
+          target.scrollLeft < target.scrollWidth - target.clientWidth;
+
+        if (toLeft || toRight) {
+          event.preventDefault();
+          target.scrollLeft += event.deltaY * 5;
+        }
+      });
+    </script>
+    <style>
+     html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter";
+  background: url("/bg.png");
+  background-size: cover;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+.hidescrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hidescrollbar::-webkit-scrollbar {
+  display: none;
+}
+body {
+  
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: 300% 300%;
+  background-image: linear-gradient(
+        -45deg, 
+        rgb(138, 28, 24,0.6) 0%, 
+        rgb(77, 176, 2,0.3) 25%, 
+        rgb(138, 27, 24,0.6) 50%, 
+        rgb(77, 176, 2,0.6) 100%
+  );  
+  animation: AnimateBG 20s ease infinite;
+}
+@keyframes AnimateBG { 
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+
+::-webkit-scrollbar {
+  width: 4px;
+  background: #889a7b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #819c46;
+}
+
+    </style>
+  </body>
+</html>
